@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawasaki Motorcycles</title>
+
+  <style>
+    /* BASIC STYLE */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* GLOW ANIMATION */
+    @keyframes neonGlow {
+      0% { box-shadow: 0 0 8px #00ff4c, 0 0 16px #00ff4c; }
+      50% { box-shadow: 0 0 16px #00ff4c, 0 0 32px #00ff4c; }
+      100% { box-shadow: 0 0 8px #00ff4c, 0 0 16px #00ff4c; }
+    }
+
+    /* FLOAT ANIMATION */
+    @keyframes floatImage {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* BUTTON ENERGY RING */
+    @keyframes energyPulse {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.45); opacity: 0; }
+    }
+
+    .energy-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150%;
+      height: 150%;
+      border-radius: 50%;
+      border: 3px solid #00ff4c;
+      opacity: 0;
+      animation: energyPulse 0.8s linear;
+      pointer-events: none;
+    }
+
+    /* HEADER */
+    .header {
+      background: black;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #00ff4c;
+      animation: neonGlow 2s infinite ease-in-out;
+    }
+
+    .green-bar {
+      height: 8px;
+      background: #00ff4c;
+    }
+
+    .green-bar.small {
+      height: 4px;
+      background: #00ff4c;
+    }
+
+    /* LIST PAGE */
+    #listPage {
+      padding: 30px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .bike-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .bike-card {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,255,76,0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .bike-card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 0 20px #00ff4c;
+    }
+
+    .bike-card img {
+      width: 100%;
+      transition: transform 0.6s ease;
+      animation: floatImage 4s ease-in-out infinite;
+    }
+
+    .bike-card:hover img {
+      transform: scale(1.1) rotate(-2deg);
+    }
+
+    /* SHOW MORE */
+    .show-more {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ff4c;
+      position: relative;
+      text-decoration: none;
+    }
+
+    /* SPEC PAGE */
+    #specPage {
+      display: none;
+      padding: 20px 40px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .bike-image {
+      width: 550px;
+      opacity: 1; /* Ensure visible immediately */
+      transform: scale(1); /* Reset transform */
+      animation: floatImage 4s ease-in-out infinite; /* Keep floating effect */
+      transition: transform 0.6s ease;
+      margin-bottom: 20px;
+    }
+
+    /* PRICE BOX */
+    .price-box {
+      background: #001d09;
+      border: 2px solid #00ff4c;
+      color: #00ff4c;
+      padding: 20px;
+      border-radius: 20px;
+      width: 300px;
+      margin-top: 30px;
+      animation: neonGlow 2.5s infinite ease-in-out;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      background: #00ff4c;
+      color: black;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.12);
+    }
+
+    button:active .energy-ring {
+      opacity: 1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      background: black;
+      color: white;
+      border: 2px solid #00ff4c;
+    }
+
+    .back-btn {
+      background: #333;
+      color: #00ff4c;
+      border: 2px solid #00ff4c;
+      margin-right: 20px;
+    }
+
+    .buy-btn {
+      background: red;
+      color: white;
+    }
+
+    .spec-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .spec-table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .spec-table th, .spec-table td {
+      padding: 10px;
+      border: 1px solid #00ff4c;
+    }
+
+    .footer {
+      margin-top: 30px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1 class="site-title">Kawasaki</h1>
+
+    <button class="logout-btn" onclick="logout()">
+      LOG OUT
+    </button>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html"; // change to your desired page
+    }
+  </script>
+</body>
+
+
+  
+
+  <div class="green-bar"></div>
+  <div class="green-bar small"></div>
+
+  <!-- LIST PAGE -->
+  <div id="listPage">
+    <h2>Select a Motorcycle</h2>
+
+    <div class="bike-section">
+      <div class="bike-card">
+        <img src="Ninja 650.jpg" />
+        <h3>2025<br>Ninja 650</h3>
+        <a href="#" class="show-more" onclick="openSpecs('ninja650')">+ SHOW MORE »</a>
+      </div>
+
+      <div class="bike-card">
+        <img src="Ninja 1000 SX.png" />
+        <h3>2024<br>Ninja 1000-SX</h3>
+        <a href="#" class="show-more" onclick="openSpecs('ninja1000')">+ SHOW MORE »</a>
+      </div>
+
+      <div class="bike-card">
+        <img src="z1000.jpg" />
+        <h3>2025<br>Z1000</h3>
+        <a href="#" class="show-more" onclick="openSpecs('z1000')">+ SHOW MORE »</a>
+      </div>
+
+      <div class="bike-card">
+        <img src="ZH2.png" />
+        <h3>2025<br>ZH2</h3>
+        <a href="#" class="show-more" onclick="openSpecs('zh2')">+ SHOW MORE »</a>
+      </div>
+
+      <div class="bike-card">
+        <img src="Z900 SE.png" />
+        <h3>2025<br>Z900 SE</h3>
+        <a href="#" class="show-more" onclick="openSpecs('z900se')">+ SHOW MORE »</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEC PAGE -->
+  <div id="specPage">
+    <button class="close-btn" onclick="goBack()">
+      ✕<div class="energy-ring"></div>
+    </button>
+
+    <div class="spec-layout">
+      <div>
+        <img id="specImage" class="bike-image" />
+        <h2 id="specYear"></h2>
+        <h3 id="specName"></h3>
+
+        <div class="price-box">
+          <p><strong>SRP: ₱ ,000</strong></p>
+          <p>Downpayment: ₱107,000</p>
+          <p>MONTHLY: ₱17,400</p>
+        </div>
+      </div>
+
+      <div>
+        <h2>SPECIFICATIONS</h2>
+        <table class="spec-table">
+          <tr><th>Make</th><td>Kawasaki</td></tr>
+          <tr><th>Model</th><td id="specModel"></td></tr>
+          <tr><th>Frame</th><td>Backbone</td></tr>
+          <tr><th>Transmission</th><td>6-speed</td></tr>
+          <tr><th>Engine</th><td>Liquid-cooled, 4-stroke</td></tr>
+          <tr><th>Fuel Capacity</th><td>17 Liters</td></tr>
+          <tr><th>Weight</th><td>221 kg</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="back-btn" onclick="goBack()">
+        ⟵ BACK<div class="energy-ring"></div>
+      </button>
+
+      <button class="buy-btn" onclick="buyNow()">
+  BUY NOW<div class="energy-ring"></div>
+</button>
+ 
+
+    </div>
+  </div>
+
+  <script>
+    const bikes = {
+      ninja650: { 
+        img: "Ninja 650.jpg", 
+        year: "2025", 
+        name: "Ninja 650", 
+        model: "Ninja 650",
+        buyLink: "buy-ninja650.html"
+      },
+  
+      ninja1000: { 
+        img: "Ninja 1000 SX.png",
+        year: "2024",
+        name: "Ninja 1000-SX",
+        model: "Ninja 1000-SX",
+        buyLink: "buy-ninja1000.html"
+      },
+  
+      z1000: { 
+        img: "z1000.jpg",
+        year: "2025",
+        name: "Z1000",
+        model: "Z1000",
+        buyLink: "buy-z1000.html"
+      },
+  
+      zh2: { 
+        img: "ZH2.png",
+        year: "2025",
+        name: "ZH2",
+        model: "ZH2",
+        buyLink: "buy-zh2.html"
+      },
+  
+      z900se: { 
+        img: "Z900 SE.png",
+        year: "2025",
+        name: "Z900 SE",
+        model: "Z900 SE",
+        buyLink: "buy-z900se.html"
+      }
+    };
+  
+    let currentBike = null;
+  
+    function openSpecs(id) {
+      currentBike = id;
+      const b = bikes[id];
+  
+      document.getElementById("specImage").src = b.img;
+      document.getElementById("specYear").innerHTML = b.year;
+      document.getElementById("specName").innerHTML = b.name;
+      document.getElementById("specModel").innerHTML = b.model;
+  
+      // Update BUY NOW button on spec page
+      const specBuyButton = document.querySelector("#specPage .buy-btn");
+      specBuyButton.setAttribute("onclick", `buyNow('${id}')`);
+  
+      document.getElementById("listPage").style.display = "none";
+      document.getElementById("specPage").style.display = "block";
+    }
+  
+    function buyNow(id) {
+      window.location.href = bikes[id].buyLink;
+    }
+  
+    function goBack() {
+      document.getElementById("specPage").style.display = "none";
+      document.getElementById("listPage").style.display = "block";
+    }
+  </script>
+  

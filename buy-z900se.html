@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kawasaki Motorcycle Order</title>
+  
+  <style>
+    /* Basic Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background-color: #1b1b1b; /* Dark background for futuristic look */
+      color: #fff;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      padding: 0;
+      height: 100%;
+    }
+
+    /* Container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      height: 100%;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7); /* Slight transparency */
+      color: #00ff4c;
+      padding: 20px 30px;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    .header .logo {
+      font-size: 26px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00ff4c; /* Glowing text */
+    }
+
+    .header .logo span {
+      color: #00ff4c;
+    }
+
+    .header .close-btn {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ff4d4d;
+      transition: color 0.3s ease;
+    }
+
+    .header .close-btn:hover {
+      color: #00ff4c; /* Glowing red when hovered */
+    }
+
+    /* Image with animation */
+    .bike-image {
+      width: 350px;
+      height: auto;
+      margin-top: 20px;
+      transform: scale(1);
+      border: 3px solid #00ff4c;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 76, 0.8);
+      animation: fadeInImage 2s ease-in-out, zoomEffect 3s ease-in-out infinite alternate;
+      transition: transform 0.3s ease;
+    }
+
+    .bike-image:hover {
+      transform: scale(1.1) rotate(5deg); /* Subtle zoom and rotation on hover */
+    }
+
+    /* Title */
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInText 1s 0.5s forwards;
+      text-shadow: 0 0 10px #00ff4c;
+    }
+
+    /* Model */
+    .model {
+      font-size: 20px;
+      color: #777;
+      opacity: 0;
+      animation: fadeInText 1s 1s forwards;
+    }
+
+    /* Description */
+    .description {
+      font-size: 16px;
+      margin-top: 20px;
+      line-height: 1.6;
+      color: #bbb;
+      opacity: 0;
+      animation: fadeInText 1s 1.5s forwards;
+    }
+
+    /* Order Button */
+    .order-btn {
+      background-color: #ff4d4d;
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px; /* Rounded edges */
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      animation: pulseGlow 2s infinite alternate; /* Subtle glowing pulse */
+    }
+
+    .order-btn:hover {
+      background-color: #ff1a1a;
+      transform: scale(1.05); /* Slight zoom on hover */
+    }
+
+    .order-btn:active {
+      transform: scale(0.95); /* Slightly shrink when clicked */
+    }
+
+    /* Keyframes for Animations */
+
+    /* Fade-in for the whole container */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Fade-in for the image */
+    @keyframes fadeInImage {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Fade-in for text elements */
+    @keyframes fadeInText {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Slide-in effect for header */
+    @keyframes slideIn {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Subtle Zoom effect on image */
+    @keyframes zoomEffect {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Glow effect for the button */
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px #00ff4c, 0 0 20px #00ff4c;
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px #00ff4c, 0 0 60px #00ff4c;
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px #00ff4c, 0 0 20px #00ff4c;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">Kawasaki <span>Motorcycles</span></div>
+      <div class="close-btn" onclick="window.location.href='netpage.html'">X</div>
+    </div>
+
+    <!-- Image -->
+    <img src="Z900 SE.png" alt="2025-Z900 SE" class="bike-image" />
+
+    <!-- Title and Model -->
+    <div class="title">2025-Z900 SE</div>
+
+    <!-- Description -->
+    <div class="description">
+      "Unleash the beast within with the Kawasaki Z900,a perfect blend of raw power and precision engineering. Designed for the bold, it's more than a motorcycle; it's a force that commands attention, thrilling you with every twist of the throttle. Ride the streets like never before, where speed, agility, and performance meet."
+    </div>
+
+    <!-- Place Order Button -->
+    <button class="order-btn" onclick="placeOrder()">PLACE ORDER</button>
+  </div>
+
+  <script>
+    function placeOrder() {
+      alert('Your order has been placed!'); // Add functionality to handle the order
+    }
+  </script>
+</body>
+</html>
